@@ -8,6 +8,6 @@ public interface ResultRepository extends CrudRepository<Result, String>{
 	
 	Result findByResultId(String resultId);
 	
-	Result[] findByRaceId(String raceId);
+	Result[] findByRaceIdOrderByPositionOrder(String raceId);
 
 }
