@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import io.sahil.f1dashboard.repository.ResultRepository;
 import io.sahil.f1dashboard.repository.StatusRepository;
 
 @RestController
+@CrossOrigin
 public class StandingController {
 	
 	private ResultRepository resultRepository;

@@ -1,0 +1,29 @@
+.TabBar {
+
+	background-color: #e00600;
+
+}
+
+
+.TabButton {
+	display: table-cell;
+	color: white;
+	font-size: x-large;
+	padding-block : 15px;
+	padding-inline: 15px;
+	margin-inline-end: 30px;
+}
+
+.TabButton:hover {
+	background-color: black;
+}
+
+
+.LogoImage {
+	float: left;
+	position: sticky;
+	height: 45px;
+	padding-top: 10px;
+	margin-inline-end: 100px;
+	
+}
