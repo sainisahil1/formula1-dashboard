@@ -7,13 +7,14 @@
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 body {
   font-family: 'Noto Sans Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8fbf8;
+  background-color: #f8f4f1;
 }
 
 code {

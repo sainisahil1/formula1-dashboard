@@ -1,6 +1,7 @@
 .TabBar {
 
 	background-color: #e00600;
+	margin-bottom: 20px;
 
 }
 
@@ -12,6 +13,7 @@
 	padding-block : 15px;
 	padding-inline: 15px;
 	margin-inline-end: 30px;
+	transition: 0.3s;
 }
 
 .TabButton:hover {

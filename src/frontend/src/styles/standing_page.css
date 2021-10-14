@@ -1,0 +1,123 @@
+
+.LeftList {
+	text-align: center;
+	overflow: hidden;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	padding-block: 10px;
+	padding-inline: 20px;
+	width: 250px;
+	list-style-type: none;
+	
+}
+
+.ListItem {
+	font-weight: 500;
+	text-decoration: none;
+	display: block;
+	color: black;
+}
+
+.ListItem:link{
+	text-decoration: none;
+	color: black;
+}
+
+.ListItem:not(:last-child) {
+	margin-bottom: 5px;
+}
+
+
+
+.ListHeading {
+	display: inline-block;
+	margin-bottom: 10px;
+	padding-block-end: 5px;
+	width: fit-content;
+	border-block-end: 2px dashed;
+	border-block-end-color: #e00600;
+	margin-top: 10px;
+	font-size: larger;
+	font-weight: 600;
+	padding-inline: 10px;
+}
+
+
+.MyScroll::-webkit-scrollbar{
+	width: 6px;
+	height: 4px;
+}
+
+.MyScroll::-webkit-scrollbar-track{
+	background: white;
+	border-radius: 20px;
+}
+
+.MyScroll::-webkit-scrollbar-thumb{
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 25px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.ListBlock{	
+	padding-inline-start: 10px;
+	background-color: white;
+	padding-block-end: 5px;
+	width: fit-content;
+	float: left;
+	
+	
+}
+
+
+.LeftPane {
+	display: grid;
+	grid-row-gap: 30px;
+	margin-left: 50px;
+}
+
+.YearList {
+	font-size: 1.4rem;
+	height: 150px;
+}
+
+.RaceList {
+	font-size: 1.2rem;
+	height: 250px;
+}
+
+.MainGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+}
+
+.RightPane{
+	margin-right: 50px;
+	grid-column: span 3;
+}
+
+.CircuitCard {
+	background-color: white;
+}
+
+.ContentHeading {
+	display: inline-block;
+	margin-bottom: 10px;
+	padding-block-end: 5px;
+	width: fit-content;
+	border-block-end: 2px dashed;
+	border-block-end-color: #e00600;
+	font-size: larger;
+	font-weight: 600;
+	padding-inline: 10px;
+}
