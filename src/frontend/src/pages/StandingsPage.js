@@ -1,13 +1,40 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import { TabBar } from "./../components/TabBar";
 import {BrowserRouter as Router, Link} from "react-router-dom"
 
 import "./../styles/standing_page.css";
 import { CircuitComponent } from "../components/CircuitComponent";
+import {TableComponent} from "../components/TableComponent"
 
 
 
 export const StandingsPage = () => {
+
+  const [races, setRaces] = useState([]);
+  const[seasons, setSeasons] = useState([]);
+
+  useEffect(
+    () => {
+      const fetchRacesByYear = async () => {
+        const repsonse = await fetch("http://localhost:8080/standings/races/" + seasons[0].year);
+        const data = await repsonse.json();
+        setRaces(data.races);
+        console.log("running races");
+      };
+
+      const fetchSeasons = async () => {
+        const response = await fetch("http://localhost:8080/standings/seasons");
+        const data = await response.json();
+        setSeasons(data.seasons);
+        console.log("running seasons");
+        fetchRacesByYear()
+      };
+
+      fetchSeasons();
+    }, []
+  );
+
+
   return (
     <div className="StandingsPage">
       <TabBar />
@@ -16,25 +43,13 @@ export const StandingsPage = () => {
 
   <div className="MainGrid">
 
-        <div class="LeftPane">
+        <div className="LeftPane">
 
     {/**Year list */}
       <div className="ListBlock card">
         <p className="ListHeading">YEAR</p>
             <ul className="LeftList MyScroll YearList">
-                <li className="ListItem"><Link>2001</Link></li>
-                <li className="ListItem"><Link>2002</Link></li>
-                <li className="ListItem"><Link>2003</Link></li>
-                <li className="ListItem"><Link>2004</Link></li>
-                <li className="ListItem"><Link>2005</Link></li>
-                <li className="ListItem"><Link>2006</Link></li> 
-                <li className="ListItem"><Link>2007</Link></li> 
-                <li className="ListItem"><Link>2008</Link></li>
-                <li className="ListItem"><Link>2009</Link></li>
-                <li className="ListItem"><Link>2010</Link></li>
-                <li className="ListItem"><Link>2011</Link></li>
-                <li className="ListItem"><Link>2013</Link></li>
-                <li className="ListItem"><Link>2014</Link></li>
+                {seasons.map(season => <li className="ListItem"><Link>{season.year}</Link></li>)}
             </ul>
           </div>
 
@@ -42,23 +57,7 @@ export const StandingsPage = () => {
       <div className="ListBlock card">
         <p className="ListHeading">RACES</p>
             <ul className="LeftList MyScroll RaceList">
-                <li className="ListItem"><Link>Austria</Link></li>
-                <li className="ListItem"><Link>Styria</Link></li>
-                <li className="ListItem"><Link>Hungary</Link></li>
-                <li className="ListItem"><Link>Great Britain</Link></li>
-                <li className="ListItem"><Link>70th Anniversary</Link></li>
-                <li className="ListItem"><Link>Spain</Link></li> 
-                <li className="ListItem"><Link>Belgium</Link></li> 
-                <li className="ListItem"><Link>Italy</Link></li>
-                <li className="ListItem"><Link>Tuscany</Link></li>
-                <li className="ListItem"><Link>Russia</Link></li>
-                <li className="ListItem"><Link>Eifel</Link></li>
-                <li className="ListItem"><Link>Portugal</Link></li>
-                <li className="ListItem"><Link>Emilia Romagna</Link></li>
-                <li className="ListItem"><Link>Turkey</Link></li>
-                <li className="ListItem"><Link>Bahrain</Link></li>
-                <li className="ListItem"><Link>Sakhir</Link></li>
-                <li className="ListItem"><Link>Abu Dhabi</Link></li>
+                {races.map(team => <li className="ListItem"><Link>{team.name}</Link></li>)}
             </ul>
           </div>
 
@@ -68,6 +67,7 @@ export const StandingsPage = () => {
           <div className="RightPane">
 
             <CircuitComponent/>
+            <TableComponent />
 
 
           </div>

@@ -1,0 +1,35 @@
+.TableMain {
+	display: table;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	padding-block: 10px;
+	grid-row-gap: 10px;
+	grid-column-gap: 10px;
+	overflow: hidden;
+	overflow-x: scroll;
+	font-size: 1rem;
+	padding-inline: 30px;
+}
+
+.TableContent{
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.TableContent th {
+	padding-block: 20px;
+  	text-align: center;
+ 	background-color: white;
+	  color: grey;
+	  font-weight: normal;
+}
+
+.TableContent td{
+	  padding-block: 20px;
+	  padding-inline: 8px;
+}
+
+.TableContent tr:nth-child(even){
+	background-color: #f4f4f4;
+}

@@ -1,6 +1,8 @@
 package io.sahil.f1dashboard.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,12 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import io.sahil.f1dashboard.Model.Circuit;
 import io.sahil.f1dashboard.Model.Race;
 import io.sahil.f1dashboard.Model.Result;
+import io.sahil.f1dashboard.Model.Season;
+import io.sahil.f1dashboard.Model.Status;
 import io.sahil.f1dashboard.dto.ResultDto;
 import io.sahil.f1dashboard.repository.CircuitRepository;
 import io.sahil.f1dashboard.repository.ConstructorsRepository;
 import io.sahil.f1dashboard.repository.DriverRepository;
 import io.sahil.f1dashboard.repository.RaceRepository;
 import io.sahil.f1dashboard.repository.ResultRepository;
+import io.sahil.f1dashboard.repository.SeasonRepository;
 import io.sahil.f1dashboard.repository.StatusRepository;
 
 @RestController
@@ -32,6 +37,7 @@ public class StandingController {
 	private DriverRepository driverRepository;
 	private StatusRepository statusRepository;
 	private RaceRepository raceRepository;
+	private SeasonRepository seasonRepository;
 	
 	public StandingController(
 			ResultRepository resultRepository,
@@ -39,7 +45,8 @@ public class StandingController {
 			ConstructorsRepository constructorsRepository,
 			DriverRepository driverRepository,
 			StatusRepository statusRepository,
-			RaceRepository raceRepository
+			RaceRepository raceRepository,
+			SeasonRepository seasonRepository
 			) {
 		super();
 		this.resultRepository = resultRepository;
@@ -48,6 +55,7 @@ public class StandingController {
 		this.driverRepository = driverRepository;
 		this.statusRepository = statusRepository;
 		this.raceRepository = raceRepository;
+		this.seasonRepository = seasonRepository;
 	}
 	
 	
@@ -116,11 +124,27 @@ public class StandingController {
 	}
 	
 	
+	@GetMapping("/standings/status/{statusId}")
+	public ResponseEntity<Object> getStatusById(@PathVariable String statusId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		Status status = this.statusRepository.findByStatusId(statusId);
+		map.put("status", status);
+		if(status == null) {
+			map.put("message", "no entry exist");
+		} else map.put("message", "success");
+		return new ResponseEntity<Object>(map, HttpStatus.OK);
+	}
 	
 	
 	
-	
-	
+	@GetMapping("/standings/seasons")
+	public ResponseEntity<Object> getSeasons(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		ArrayList<Season> seasons =  this.seasonRepository.findAllByOrderByYearDesc();
+		//Collections.reverse(seasons);
+		map.put("seasons", seasons);
+		return new ResponseEntity<Object>(map, HttpStatus.OK);
+	}
 	
 	
 

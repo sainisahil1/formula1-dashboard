@@ -16,6 +16,7 @@ import io.sahil.f1dashboard.Model.Constructors;
 import io.sahil.f1dashboard.Model.Driver;
 import io.sahil.f1dashboard.Model.Race;
 import io.sahil.f1dashboard.Model.Result;
+import io.sahil.f1dashboard.Model.Season;
 import io.sahil.f1dashboard.Model.Status;
 
 @Component
@@ -72,6 +73,11 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
       .stream()
       .forEach(c -> em.persist(c));
       
+      
+      em.createQuery("select c from Season c", Season.class)
+      .getResultList()
+      .stream()
+      .forEach(c -> em.persist(c));
       
       
       

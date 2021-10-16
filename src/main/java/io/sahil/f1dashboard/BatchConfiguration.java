@@ -25,18 +25,21 @@ import io.sahil.f1dashboard.DataProcessors.ConstructorsProcessor;
 import io.sahil.f1dashboard.DataProcessors.DriverProcessor;
 import io.sahil.f1dashboard.DataProcessors.RaceProcessor;
 import io.sahil.f1dashboard.DataProcessors.ResultProcessor;
+import io.sahil.f1dashboard.DataProcessors.SeasonProcessor;
 import io.sahil.f1dashboard.DataProcessors.StatusProcessor;
 import io.sahil.f1dashboard.Model.Circuit;
 import io.sahil.f1dashboard.Model.Constructors;
 import io.sahil.f1dashboard.Model.Driver;
 import io.sahil.f1dashboard.Model.Race;
 import io.sahil.f1dashboard.Model.Result;
+import io.sahil.f1dashboard.Model.Season;
 import io.sahil.f1dashboard.Model.Status;
 import io.sahil.f1dashboard.data.CircuitInput;
 import io.sahil.f1dashboard.data.ConstructorsInput;
 import io.sahil.f1dashboard.data.DriverInput;
 import io.sahil.f1dashboard.data.RaceInput;
 import io.sahil.f1dashboard.data.ResultInput;
+import io.sahil.f1dashboard.data.SeasonInput;
 import io.sahil.f1dashboard.data.StatusInput;
 
 @Configuration
@@ -50,6 +53,8 @@ public class BatchConfiguration {
   private final String raceFile = "races.csv";
   private final String resultFile = "results.csv";
   private final String statusFile = "status.csv";
+  private final String seasonFile = "seasons.csv";
+  
   
 
 
@@ -82,6 +87,9 @@ public class BatchConfiguration {
     "status_id", "status"
   };
   
+  private final String[] SEASONS_FIELD = new String[] {
+		  "year", "url"
+  };
 
 
 
@@ -288,6 +296,38 @@ public class BatchConfiguration {
       .dataSource(dataSource)
       .build();
   }
+  
+  
+  
+  
+  //Season
+  @Bean
+  public FlatFileItemReader<SeasonInput> seasonReader() {
+    return new FlatFileItemReaderBuilder<SeasonInput>()
+      .name("SeasonItemReader")
+      .resource(new ClassPathResource(baseFolder+seasonFile))
+      .delimited()
+      .names(SEASONS_FIELD)
+      .fieldSetMapper(new BeanWrapperFieldSetMapper<SeasonInput>() {{
+        setTargetType(SeasonInput.class);
+      }})
+      .build();
+  }
+
+  @Bean
+  public SeasonProcessor seasonProcessor() {
+    return new SeasonProcessor();
+  }
+
+  @Bean
+  public JdbcBatchItemWriter<Season> seasonWriter(DataSource dataSource) {
+    return new JdbcBatchItemWriterBuilder<Season>()
+      .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
+      .sql("INSERT INTO season (year) " +
+       " VALUES (:year)")
+      .dataSource(dataSource)
+      .build();
+  }
 
 
 
@@ -302,7 +342,8 @@ public Job importUserJob(
   Step driverStep,
   Step raceStep,
   Step resultStep,
-  Step statusStep
+  Step statusStep,
+  Step seasonStep
  ) {
   return jobBuilderFactory.get("importUserJob")
     .incrementer(new RunIdIncrementer())
@@ -313,6 +354,7 @@ public Job importUserJob(
     .next(raceStep)
     .next(resultStep)
     .next(statusStep)
+    .next(seasonStep)
     .build();
 }
 
@@ -387,6 +429,18 @@ public Step statusStep(JdbcBatchItemWriter<Status> statusWriter) {
     .reader(statusReader())
     .processor(statusProcessor())
     .writer(statusWriter)
+    .build();
+}
+
+
+//season step
+@Bean
+public Step seasonStep(JdbcBatchItemWriter<Season> seasonWriter) {
+  return stepBuilderFactory.get("seasonStep")
+    .<SeasonInput, Season> chunk(10)
+    .reader(seasonReader())
+    .processor(seasonProcessor())
+    .writer(seasonWriter)
     .build();
 }
 

@@ -61,6 +61,7 @@
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  background-color: white;
 }
 
 .card:hover {
@@ -73,7 +74,6 @@
 	background-color: white;
 	padding-block-end: 5px;
 	width: fit-content;
-	float: left;
 	
 	
 }
@@ -81,8 +81,9 @@
 
 .LeftPane {
 	display: grid;
-	grid-row-gap: 30px;
-	margin-left: 50px;
+	grid-row-gap: 20px;
+	margin-left: 20px;
+	height: fit-content;
 }
 
 .YearList {
@@ -102,13 +103,12 @@
 }
 
 .RightPane{
-	margin-right: 50px;
+	height: fit-content;
+	margin-right: 20px;
 	grid-column: span 3;
+	margin-bottom: 50px;
 }
 
-.CircuitCard {
-	background-color: white;
-}
 
 .ContentHeading {
 	display: inline-block;
@@ -121,3 +121,5 @@
 	font-weight: 600;
 	padding-inline: 10px;
 }
+
+

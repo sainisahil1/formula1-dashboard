@@ -4,13 +4,12 @@ import "./../styles/standing_page.css"
 
 export const CircuitComponent = () => {
   return (
-    <div className="CircuitCard card">
-	  <p className="ContentHeading">Circuit</p>
+    <div className="CircuitMain card">
+	  <h2>ALBERT PARK GRAND PRIX CIRCUIT</h2>
 	  <div className="CircuitContent MyScroll">
-		  <p>Albert Park Grand Prix Circuit</p>
 		  <p>Location: Australia</p>
 		  <p>Country: UK</p>
-		  <a href="https://maps.google.com/?q=-37.8497,144.968" target="_blank" className="Locate">Locate on map</a>
+		  <a href="https://maps.google.com/?q=-37.8497,144.968" rel="noreferrer" target="_blank" className="Locate">Locate on map</a>
 	  </div>
     </div>
   );

@@ -54,7 +54,7 @@ public class ResultProcessor implements ItemProcessor<ResultInput, Result> {
 
     private String convertToAbsoluteTime(String millis){
         if(millis.equalsIgnoreCase("\\N")){
-            return "-";
+            return "";
         } else {
             long millisLong = Long.parseLong(millis);
             long milliSec = millisLong % 1000;
