@@ -2,7 +2,14 @@ import { React } from "react";
 import "./../styles/table_card.css"
 import "./../styles/standing_page.css"
 
-export const TableComponent = () => {
+export const TableComponent = ({results}) => {
+
+
+
+
+	if(!results){
+		return null;
+	}
   return (
     
 	  <div className="TableMain MyScroll card">
@@ -18,97 +25,16 @@ export const TableComponent = () => {
 			  </tr>
 			  </thead>
 			  <tbody>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
+			  {results.map(result => 
+				<tr key={result.resultId}>
+					<td>{result.positionText}</td>
+					<td>{result.driverName}</td>
+					<td>{result.constructorName}</td>
+					<td>{result.laps}</td>
+					<td>{result.absoluteTime}</td>
+					<td>{result.points}</td>
 			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
-			  <tr>
-				  <td>1</td>
-				  <td>Valtteri Bottas</td>	
-				  <td>MERCEDES</td>	<td>58</td>	
-				  <td>1:31:04.103</td>	
-				  <td>26</td>
-			  </tr>
+			  )}
 			  </tbody>
 		  </table>
 	  </div>

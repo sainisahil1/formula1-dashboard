@@ -67,11 +67,12 @@ public class StandingController {
 		Result[] results = this.resultRepository.findByRaceIdOrderByPositionOrder(raceId);
 		ArrayList<ResultDto> resultDtoArrayList = new ArrayList<ResultDto>();
 		for(Result r: results) {
-			resultDtoArrayList.add(new ResultDto(
+			
+			ResultDto dto = new ResultDto(
 					r.getResultId(),
 					r.getRaceId(),
 					r.getDriverId(),
-					this.driverRepository.findByDriverId(r.getDriverId()).getCode(),
+					this.driverRepository.findByDriverId(r.getDriverId()).getForename() + " " + this.driverRepository.findByDriverId(r.getDriverId()).getSurname(),
 					r.getConstructorId(),
 					this.constructorsRepository.findByConstructorId(r.getConstructorId()).getName(),
 					r.getGrid(),
@@ -84,7 +85,13 @@ public class StandingController {
 					r.getFastestLapSpeed(),
 					this.statusRepository.findByStatusId(r.getStatusId()).getStatus(),
 					r.getAbsoluteTime()
-					));	
+					);
+			
+			if(dto.getAbsoluteTime().equals("")) {
+				dto.setAbsoluteTime(dto.getStatusId());
+			}
+			
+			resultDtoArrayList.add(dto);
 		}
 		if(resultDtoArrayList.size() == 0) {
 		map.put("message", "no entry exist");
@@ -138,12 +145,15 @@ public class StandingController {
 	
 	
 	@GetMapping("/standings/seasons")
-	public ResponseEntity<Object> getSeasons(){
-		Map<String, Object> map = new HashMap<String, Object>();
-		ArrayList<Season> seasons =  this.seasonRepository.findAllByOrderByYearDesc();
-		//Collections.reverse(seasons);
-		map.put("seasons", seasons);
-		return new ResponseEntity<Object>(map, HttpStatus.OK);
+	public int[] getSeasons(){
+		
+		Season[] seasons =  this.seasonRepository.findAllByOrderByYearDesc();
+		int[] newSeasons = new int[seasons.length];
+		for(int i=0; i<seasons.length; i++) {
+			newSeasons[i] = seasons[i].getYear();
+		}
+		
+		return newSeasons;
 	}
 	
 	
