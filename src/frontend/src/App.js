@@ -1,7 +1,7 @@
 
 import './App.css';
 import { StandingsPage } from './pages/StandingsPage';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {HashRouter as Router, Route, Switch} from "react-router-dom"
 import { useEffect, useState } from 'react';
 
 
@@ -28,7 +28,7 @@ function App() {
         <Route path={"/standings/races/:year"}>
       <StandingsPage seasons={seasons}/>
       </Route>
-      <Route path={""}>
+      <Route path={"/"}>
       <StandingsPage seasons={seasons}/>
       </Route>
       </Switch>
