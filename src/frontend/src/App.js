@@ -28,7 +28,7 @@ function App() {
         <Route path={"/standings/races/:year"}>
       <StandingsPage seasons={seasons}/>
       </Route>
-      <Route path={"/"}>
+      <Route path={""}>
       <StandingsPage seasons={seasons}/>
       </Route>
       </Switch>
