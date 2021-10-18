@@ -21,7 +21,7 @@ public class CircuitProcessor implements org.springframework.batch.item.ItemProc
         circuit.setLocation(input.getLocation());
         circuit.setCountry(input.getCountry());
         circuit.setLat(input.getLat());
-        circuit.setLng((input.getLat()));
+        circuit.setLng((input.getLng()));
 
         logger.info("Converting (" + input + ") into (" + circuit + ")");
 
