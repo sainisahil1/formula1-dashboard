@@ -1,35 +1,54 @@
 package io.sahil.f1dashboard.data.models
 
+import com.google.gson.annotations.SerializedName
+
 data class Result (
-    private val resultId: String? = null,
 
-    private val raceId: String? = null,
+    @SerializedName("resultId")
+    private val resultId: String? = "",
 
-    private val driverId: String? = null,
+    @SerializedName("raceId")
+    private val raceId: String? = "",
 
-    private val driverName: String? = null,
+    @SerializedName("driverId")
+    private val driverId: String? = "",
 
-    private val constructorId: String? = null,
+    @SerializedName("driverName")
+    private val driverName: String? = "",
 
-    private val constructorName: String? = null,
+    @SerializedName("constructorId")
+    private val constructorId: String? = "",
 
+    @SerializedName("constructorName")
+    private val constructorName: String? = "",
+
+    @SerializedName("grid")
     private val grid: Int? = 0,
 
-    private val positionText: String? = null,
+    @SerializedName("positionText")
+    private val positionText: String? = "",
 
+    @SerializedName("positionOrder")
     private val positionOrder: Int? = 0,
 
-    private val points: String? = null,
+    @SerializedName("points")
+    private val points: String? = "",
 
+    @SerializedName("laps")
     private val laps: Int?= 0,
 
-    private val fastestLap: String? = null,
+    @SerializedName("fastestLap")
+    private val fastestLap: String? = "",
 
-    private val fastestLapTime: String? = null,
+    @SerializedName("fastestLapTime")
+    private val fastestLapTime: String? = "",
 
-    private val fastestLapSpeed: String? = null,
+    @SerializedName("fastestLapSpeed")
+    private val fastestLapSpeed: String? = "",
 
-    private val status: String? = null,
+    @SerializedName("absoluteTime")
+    private val status: String? = "",
 
-    private val absoluteTime: String? = null
+    @SerializedName("statusId")
+    private val absoluteTime: String? = ""
 )
