@@ -2,7 +2,7 @@
 <layout>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:paddingVertical="@dimen/_10sdp"
+    android:paddingVertical="@dimen/_8sdp"
     android:layout_height="wrap_content"
 
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="2020"
         android:textColor="@color/colorDark"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_13sdp"
         android:gravity="center"
         />
 

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:nestedScrollingEnabled="false"
+        >
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/title_layout"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="POS"
+        app:layout_constraintEnd_toStartOf="@id/driver"
+        android:id="@+id/pos"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/pos"
+        app:layout_constraintEnd_toStartOf="@id/time"
+        android:text="DRIVER"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:id="@+id/driver"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/driver"
+        app:layout_constraintEnd_toStartOf="@id/pts"
+        android:text="TIME/RET"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:id="@+id/time"
+        android:gravity="center"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/time"
+        android:text="PTS"
+        android:gravity="center"
+        android:id="@+id/pts"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/title_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/result_list_item"
+        android:id="@+id/result_list"
+        tools:itemCount="20"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

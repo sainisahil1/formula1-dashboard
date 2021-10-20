@@ -7,4 +7,8 @@ data class Race(
     val circuitId: String? = "",
     val name: String? = "",
     val date: String? = "",
-)
+){
+    override fun toString(): String {
+        return "raceID: $raceId, year: $year, round: $round, circuitId: $circuitId, name: $name, date: $date"
+    }
+}

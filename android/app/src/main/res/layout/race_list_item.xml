@@ -5,8 +5,9 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:cardBackgroundColor="@color/white"
+        android:id="@+id/race_card"
         android:layout_margin="@dimen/_8sdp"
-        app:cardElevation="@dimen/_4sdp"
+        app:cardElevation="@dimen/_6sdp"
         >
 <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -15,6 +16,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
+
+    <ImageView
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
+        android:src="@drawable/ic_racing_flag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/_8sdp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:textColor="@color/colorDark"
         android:textStyle="bold"
         />
@@ -42,10 +53,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_6sdp"
+        android:background="@drawable/background_lightgrey_rounded"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:textSize="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_8sdp"
-        android:id="@+id/race_year"
+        android:id="@+id/race_date"
         android:textColor="@color/grey"
         />
 

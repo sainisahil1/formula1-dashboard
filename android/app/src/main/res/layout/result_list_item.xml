@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/_4sdp"
+    android:id="@+id/result_list_item_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="POS"
+        app:layout_constraintEnd_toStartOf="@id/driver"
+        android:id="@+id/pos"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorDark"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/pos"
+        app:layout_constraintEnd_toStartOf="@id/time"
+        android:text="DRIVER"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorDark"
+        android:id="@+id/driver"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/driver"
+        app:layout_constraintEnd_toStartOf="@id/pts"
+        android:text="TIME/RET"
+        android:paddingVertical="@dimen/_4sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorDark"
+        android:id="@+id/time"
+        android:gravity="center"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/time"
+        android:text="PTS"
+        android:gravity="center"
+        android:id="@+id/pts"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

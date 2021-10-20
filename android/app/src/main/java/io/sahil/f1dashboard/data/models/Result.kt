@@ -51,4 +51,11 @@ data class Result (
 
     @SerializedName("statusId")
     private val absoluteTime: String? = ""
-)
+){
+    override fun toString(): String {
+        return "resultId: $resultId, raceId: $raceId, driverId: $driverId, driverName: $driverName, constructorId: $constructorId" +
+                ", constructorName: $constructorName, grid: $grid, positionText: $positionText, positionOrder: $positionOrder, " +
+                "points: $points, laps: $laps, fastestLap: $fastestLap, fastestLapTime: $fastestLapTime, " +
+                "fastestLapSpeed: $fastestLapSpeed, status: $status, absoluteTime: $absoluteTime"
+    }
+}

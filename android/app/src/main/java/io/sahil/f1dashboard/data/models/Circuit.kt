@@ -17,4 +17,9 @@ data class Circuit(
     val lat: String? = "",
     @SerializedName("lng")
     val lng: String? = ""
-)
+){
+    override fun toString(): String {
+        return "CircuitId: $circuitId, CircuitRef: $circuitRef, name: $name, location: $location" +
+                ", country: $country, lat: $lat, lng: $lng"
+    }
+}
