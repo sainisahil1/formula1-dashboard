@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.sahil.f1dashboard.data.models.Race
+import io.sahil.f1dashboard.data.models.RaceResponse
 import io.sahil.f1dashboard.data.network.RetrofitInstance
 import io.sahil.f1dashboard.data.network.Repository
 import kotlinx.coroutines.Dispatchers
@@ -16,10 +17,10 @@ import retrofit2.Response
 class HomeFragmentViewModel: ViewModel() {
 
     private var yearListLiveData: MutableLiveData<List<String>> = MutableLiveData()
-    private var yearListErrorHandler: MutableLiveData<String> = MutableLiveData()
-
+    private var yearErrorHandler: MutableLiveData<String> = MutableLiveData()
     private var raceListLiveData: MutableLiveData<List<Race>> = MutableLiveData()
-    private var raceListErrorHandler: MutableLiveData<String> = MutableLiveData()
+    private var raceErrorHandler: MutableLiveData<String> = MutableLiveData()
+
 
     private val retrofitInstance = RetrofitInstance.getRetrofitInstance().create(Repository::class.java)
 
@@ -35,15 +36,17 @@ class HomeFragmentViewModel: ViewModel() {
     }
 
     fun getYearListErrorHandler(): MutableLiveData<String> {
-        return yearListErrorHandler
+        return yearErrorHandler
     }
 
-    fun getRaceListErrorHandler(): MutableLiveData<String> {
-        return raceListErrorHandler
+    fun getRaceListErrorHander(): MutableLiveData<String>{
+        return raceErrorHandler
     }
 
 
-    fun fetchYear() {
+
+
+    fun fetchYears() {
         viewModelScope.launch(Dispatchers.IO){
 
             val call = retrofitInstance.getSeasons()
@@ -60,16 +63,18 @@ class HomeFragmentViewModel: ViewModel() {
                     if(response.isSuccessful){
                         yearListLiveData.postValue(response.body())
                     } else {
-                        yearListErrorHandler.postValue("Something went wrong. Please try again later.")
+                        yearErrorHandler.postValue("Something went wrong. Please try again later.")
                     }
                 }
 
                 override fun onFailure(call: Call<List<String>>, t: Throwable) {
-                    yearListErrorHandler.postValue(t.localizedMessage)
+                    t.printStackTrace()
+                    yearErrorHandler.postValue(t.localizedMessage)
                 }
             })
         }
     }
+
 
 
     fun fetchRaces(year: String){
@@ -78,20 +83,21 @@ class HomeFragmentViewModel: ViewModel() {
             val call = retrofitInstance.getRaces(year)
             Log.e(tag, "Fetch Races URL: ${call.request().url().url().path}")
 
-            call.enqueue(object: Callback<List<Race>>{
-                override fun onResponse(call: Call<List<Race>>, response: Response<List<Race>>) {
+            call.enqueue(object: Callback<RaceResponse>{
+                override fun onResponse(call: Call<RaceResponse>, response: Response<RaceResponse>) {
                     Log.e(tag, "Fetch Races Response: ${response.body().toString()}")
 
                     if (response.isSuccessful){
-                        raceListLiveData.postValue(response.body())
+                        raceListLiveData.postValue(response.body()?.races)
                     } else {
-                        raceListErrorHandler.postValue("Something went wrong. Please try again later.")
+                        raceErrorHandler.postValue("Something went wrong. Please try again later.")
                     }
 
                 }
 
-                override fun onFailure(call: Call<List<Race>>, t: Throwable) {
-                    raceListErrorHandler.postValue(t.localizedMessage)
+                override fun onFailure(call: Call<RaceResponse>, t: Throwable) {
+                    t.printStackTrace()
+                    raceErrorHandler.postValue(t.localizedMessage)
                 }
             })
 

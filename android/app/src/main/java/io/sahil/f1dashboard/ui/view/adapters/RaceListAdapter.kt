@@ -6,43 +6,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import io.sahil.f1dashboard.R
+import io.sahil.f1dashboard.data.models.Race
+import io.sahil.f1dashboard.databinding.RaceListItemBinding
 import io.sahil.f1dashboard.ui.view.fragments.ResultFragment
 
-class RaceListAdapter(val activity: FragmentActivity?): RecyclerView.Adapter<RaceListAdapter.ViewHolder>(){
+class RaceListAdapter(
+    private val activity: FragmentActivity?,
+    private var raceList: MutableList<Race>
+    ): RecyclerView.Adapter<RaceListAdapter.ViewHolder>(){
 
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-
-        val raceName: TextView = itemView.findViewById(R.id.race_name)
-        val raceDate: TextView = itemView.findViewById(R.id.race_date)
-        val raceCard: MaterialCardView = itemView.findViewById(R.id.race_card)
-
+    fun updateRaceList(updatedList: MutableList<Race>){
+        this.raceList = updatedList
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.race_list_item, parent, false)
-        return ViewHolder(view)
+        val raceListItemBinding: RaceListItemBinding = DataBindingUtil.inflate(inflater, R.layout.race_list_item, parent, false)
+        return ViewHolder(raceListItemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.raceName.text = "Australian Grand Prix"
-        holder.raceDate.text = "2020-06-18"
-
-        holder.raceCard.setOnClickListener{
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.main_frame, ResultFragment(), ResultFragment::class.java.simpleName)
-                ?.addToBackStack(null)
-                ?.commit()
-        }
+        holder.bind(raceList[position], activity)
     }
 
     override fun getItemCount(): Int {
-        return 10;
+        return raceList.size;
+    }
+
+    class ViewHolder(private val raceListItemBinding: RaceListItemBinding) : RecyclerView.ViewHolder(raceListItemBinding.root){
+
+        fun bind(race: Race, activity: FragmentActivity?){
+            raceListItemBinding.race = race
+            raceListItemBinding.raceCard.setOnClickListener {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.main_frame, ResultFragment(), ResultFragment::class.java.simpleName)
+                    ?.addToBackStack(null)
+                    ?.commit()
+            }
+        }
+
     }
 
 

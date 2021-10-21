@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="race"
+            type="io.sahil.f1dashboard.data.models.Race" />
+
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -30,7 +39,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Australian Grand Prix"
+        android:text="@{race.name}"
         android:layout_gravity="center"
         android:textSize="@dimen/_14sdp"
         android:id="@+id/race_name"
@@ -47,7 +56,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2020-09-16"
+        android:text="@{race.date}"
         app:layout_constraintTop_toBottomOf="@id/race_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -41,6 +41,32 @@
             android:background="@drawable/bottom_underline_color_primary"
             />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            app:layout_constraintTop_toBottomOf="@id/year_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/year_error_handler"
+            android:visibility="gone"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/year_error_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/colorPrimary"
+                android:text="Error: Something went wrong"
+                android:textStyle="bold"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_8sdp"

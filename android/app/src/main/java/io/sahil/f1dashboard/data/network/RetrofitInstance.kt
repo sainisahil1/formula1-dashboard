@@ -8,6 +8,9 @@ import io.sahil.f1dashboard.data.models.Race
 import io.sahil.f1dashboard.data.models.Result
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
+
 
 class RetrofitInstance {
 
@@ -17,16 +20,17 @@ class RetrofitInstance {
 
         fun getRetrofitInstance(): Retrofit {
 
-            val gson = GsonBuilder()
+            /*val gson = GsonBuilder()
+                .enableComplexMapKeySerialization()
                 .registerTypeAdapter(Circuit::class.java, DeserializerHelper<Circuit>("circuit"))
                 .registerTypeAdapter(Race::class.java, DeserializerHelper<Race>("races"))
                 .registerTypeAdapter(Result::class.java, DeserializerHelper<Result>("results"))
-                .create()
+                .create()*/
 
 
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
         }

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.sahil.f1dashboard.R
 import io.sahil.f1dashboard.databinding.FragmentResultBinding
-import io.sahil.f1dashboard.ui.view.adapters.ResultAdapter
+import io.sahil.f1dashboard.ui.view.adapters.ResultListAdapter
 
 class ResultFragment: Fragment() {
 
@@ -31,7 +31,7 @@ class ResultFragment: Fragment() {
         fragmentResultBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false)
 
         fragmentResultBinding.resultLayout.resultList.layoutManager = LinearLayoutManager(fragmentContext)
-        fragmentResultBinding.resultLayout.resultList.adapter = ResultAdapter()
+        fragmentResultBinding.resultLayout.resultList.adapter = ResultListAdapter()
 
 
 

@@ -9,6 +9,6 @@ data class Race(
     val date: String? = "",
 ){
     override fun toString(): String {
-        return "raceID: $raceId, year: $year, round: $round, circuitId: $circuitId, name: $name, date: $date"
+        return "raceID: $raceId, year: $year, round: $round, circuitId: $circuitId, name: $name, date: $date \n"
     }
 }

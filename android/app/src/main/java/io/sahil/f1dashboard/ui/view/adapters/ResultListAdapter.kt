@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.sahil.f1dashboard.R
 
-class ResultAdapter: RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
+class ResultListAdapter: RecyclerView.Adapter<ResultListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
