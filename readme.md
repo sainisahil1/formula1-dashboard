@@ -3,7 +3,7 @@
 Browse throught year wise Formula 1 races and access positions, time/ret, circuit, locations.
 
 This project is made to get familiar with REACT JS, Spring Boot and REST API.\
-A debug apk is present in [android folder](./android)
+A debug apk is present in [android folder](./android)\
 Web link: http://f1dashboard-env.eba-r6tmgvmb.ap-south-1.elasticbeanstalk.com/#/
 
 ## Technologies used
