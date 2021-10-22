@@ -35,11 +35,11 @@ https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020
 
 ## Screenshots
 
-<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/homefragment.jpeg" width="200" />
+<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/homefragment.jpeg" width="250" />
 Home Fragment
 
-<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/resultfragment.jpeg" width="200" />
+<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/resultfragment.jpeg" width="250" />
 Result Fragment
 
-<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/web_ss.JPG" width="200" />
+<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/web_ss.JPG" width="500" />
 Web
