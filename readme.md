@@ -3,7 +3,7 @@
 Browse throught year wise Formula 1 races and access positions, time/ret, circuit, locations.
 
 This project is made to get familiar with REACT JS, Spring Boot and REST API.\
-A debug apk is present in [debug folder](./android/app/build/outputs/apk/debug)
+A debug apk is present in [android folder](./android)
 
 ## Technologies used
 
