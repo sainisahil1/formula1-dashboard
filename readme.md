@@ -5,15 +5,15 @@ Browse throught year wise Formula 1 races and access positions, time/ret, circui
 This project is made to get familiar with REACT JS, Spring Boot and REST API.
 A debug apk is present in [debug folder](./android/app/build/outputs/apk/debug)
 
-##Technologies used
+## Technologies used
 
-###Web
+### Web
 
 -React JS
 -Hooks
 -CSS
 
-###Backend
+### Backend
 
 -Spring Boot
 -Spring Batch
@@ -22,7 +22,7 @@ A debug apk is present in [debug folder](./android/app/build/outputs/apk/debug)
 -HSQL DB
 -AWS Beanstalk
 
-###Android
+### Android
 
 -MVVM
 -Data Binding
@@ -30,10 +30,10 @@ A debug apk is present in [debug folder](./android/app/build/outputs/apk/debug)
 -Retrofit
 -LiveData
 
-##Dataset used
+## Dataset used
 https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020
 
-##Screenshots
+## Screenshots
 
 ![HomeFragment](homefragment.jpeg)
 Home Fragment
