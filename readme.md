@@ -2,44 +2,44 @@
 
 Browse throught year wise Formula 1 races and access positions, time/ret, circuit, locations.
 
-This project is made to get familiar with REACT JS, Spring Boot and REST API.
+This project is made to get familiar with REACT JS, Spring Boot and REST API.\
 A debug apk is present in [debug folder](./android/app/build/outputs/apk/debug)
 
 ## Technologies used
 
 ### Web
 
--React JS
--Hooks
+-React JS\
+-Hooks\
 -CSS
 
 ### Backend
 
--Spring Boot
--Spring Batch
--Java Persistence API
--JPQL
--HSQL DB
--AWS Beanstalk
+-Spring Boot\
+-Spring Batch\
+-Java Persistence API\
+-JPQL\
+-HSQL DB\
+-AWS Beanstalk\
 
 ### Android
 
--MVVM
--Data Binding
--Coroutines
--Retrofit
--LiveData
+-MVVM\
+-Data Binding\
+-Coroutines\
+-Retrofit\
+-LiveData\
 
 ## Dataset used
 https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020
 
 ## Screenshots
 
-![HomeFragment](homefragment.jpeg)
+<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/homefragment.jpeg" width="200" />
 Home Fragment
 
-![ResultFragment](resultfragment.jpeg)
+<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/resultfragment.jpeg" width="200" />
 Result Fragment
 
-![WEB](web_ss.jpg)
+<img src="https://github.com/sainisahil1/formula1-dashboard/blob/main/web_ss.JPG" width="200" />
 Web
