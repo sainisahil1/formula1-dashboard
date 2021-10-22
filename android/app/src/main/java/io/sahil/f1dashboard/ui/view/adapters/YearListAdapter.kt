@@ -10,13 +10,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import io.sahil.f1dashboard.R
+import io.sahil.f1dashboard.databinding.FragmentHomeBinding
 import io.sahil.f1dashboard.ui.viewmodels.HomeFragmentViewModel
 
 class YearListAdapter(
     private var yearList: MutableList<String>,
     private var currentPos: Int = 0,
     private val context: Context,
-    private val homeFragmentViewModel: HomeFragmentViewModel
+    private val homeFragmentViewModel: HomeFragmentViewModel,
+    private val fragmentHomeBinding: FragmentHomeBinding
     ): RecyclerView.Adapter<YearListAdapter.ViewHolder>() {
 
 
@@ -42,7 +44,11 @@ class YearListAdapter(
 
         holder.yearTextView.setOnClickListener {
             currentPos = position
+            fragmentHomeBinding.raceLoadingCard.visibility = View.VISIBLE
+            fragmentHomeBinding.raceRecyclerview.visibility = View.GONE
+            fragmentHomeBinding.raceErrorCard.visibility = View.GONE
             homeFragmentViewModel.fetchRaces(yearList[position])
+            notifyDataSetChanged()
         }
 
         if (position == currentPos){
@@ -65,6 +71,7 @@ class YearListAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var yearTextView: TextView = itemView.findViewById(R.id.year_text)
+
     }
 
 

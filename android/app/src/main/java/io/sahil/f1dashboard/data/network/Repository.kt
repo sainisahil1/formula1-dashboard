@@ -14,10 +14,10 @@ interface Repository {
      fun getRaces(@Path("year") year: String): Call<RaceResponse>
 
     @GET("standings/circuits/{circuitId}")
-    suspend fun getCircuit(@Path("circuitId") circuitId: String): Call<CircuitResponse>
+    fun getCircuit(@Path("circuitId") circuitId: String): Call<CircuitResponse>
 
     @GET("standings/results/{raceId}")
-    suspend fun getResult(@Path("raceId") raceId: String): Call<ResultResponse>
+    fun getResult(@Path("raceId") raceId: String): Call<ResultResponse>
 
 
 }

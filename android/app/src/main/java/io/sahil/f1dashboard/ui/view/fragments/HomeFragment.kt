@@ -38,60 +38,88 @@ class HomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         fragmentHomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-
-        initStaticView()
+        initStaticViews()
         initViewModel()
-
-
-
-
-
         return fragmentHomeBinding.root
     }
 
+    private fun refreshPage() {
+        yearList.clear()
+        raceList.clear()
+        yearListAdapter.notifyDataSetChanged()
+        fragmentHomeBinding.yearLayout.yearRecyclerview.visibility = View.GONE
+        fragmentHomeBinding.yearLayout.yearErrorHandler.visibility = View.GONE
+        fragmentHomeBinding.yearLayout.yearLoadingLayout.visibility = View.VISIBLE
+        fragmentHomeBinding.raceLoadingCard.visibility = View.VISIBLE
+        fragmentHomeBinding.raceRecyclerview.visibility = View.GONE
+        fragmentHomeBinding.raceErrorCard.visibility = View.GONE
+        homeFragmentViewModel.fetchYears()
+        fragmentHomeBinding.homeSwipeLayout.isRefreshing = false
 
-    private fun initStaticView() {
+    }
+
+
+    private fun initStaticViews() {
+        fragmentHomeBinding.header.backButton.visibility = View.GONE
+        fragmentHomeBinding.yearLayout.yearRecyclerview.visibility = View.GONE
+        fragmentHomeBinding.yearLayout.yearErrorHandler.visibility = View.GONE
+        fragmentHomeBinding.yearLayout.yearLoadingLayout.visibility = View.VISIBLE
+        fragmentHomeBinding.raceLoadingCard.visibility = View.VISIBLE
+        fragmentHomeBinding.raceRecyclerview.visibility = View.GONE
+        fragmentHomeBinding.raceErrorCard.visibility = View.GONE
         homeFragmentViewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
-        yearListAdapter = YearListAdapter(yearList = yearList, context = fragmentContext, homeFragmentViewModel = homeFragmentViewModel)
+        yearListAdapter = YearListAdapter(
+            yearList = yearList,
+            context = fragmentContext,
+            homeFragmentViewModel = homeFragmentViewModel,
+            fragmentHomeBinding = fragmentHomeBinding
+        )
         raceListAdapter = RaceListAdapter(activity, raceList)
+        fragmentHomeBinding.lifecycleOwner = this
         fragmentHomeBinding.yearLayout.yearRecyclerview.adapter = yearListAdapter
         fragmentHomeBinding.yearLayout.yearRecyclerview.layoutManager = LinearLayoutManager(fragmentContext)
         fragmentHomeBinding.raceRecyclerview.adapter = raceListAdapter
         fragmentHomeBinding.raceRecyclerview.layoutManager = LinearLayoutManager(fragmentContext)
+        fragmentHomeBinding.homeSwipeLayout.setColorSchemeResources(R.color.colorPrimary)
+        fragmentHomeBinding.homeSwipeLayout.setOnRefreshListener { refreshPage() }
+        fragmentHomeBinding.homeViewModel = homeFragmentViewModel
+        fragmentHomeBinding.yearLayout.homeViewModel = homeFragmentViewModel
     }
 
+
     private fun initViewModel(){
-        homeFragmentViewModel.getYearListObserver().observe(viewLifecycleOwner, Observer<List<String>>{
+        homeFragmentViewModel.yearListLiveData.observe(viewLifecycleOwner, Observer<List<String>>{
             if (it != null){
                 yearListAdapter.updateList(it.toMutableList())
+                fragmentHomeBinding.yearLayout.yearLoadingLayout.visibility = View.GONE
                 fragmentHomeBinding.yearLayout.yearErrorHandler.visibility = View.GONE
                 fragmentHomeBinding.yearLayout.yearRecyclerview.visibility = View.VISIBLE
             }
         })
 
-        homeFragmentViewModel.getYearListErrorHandler().observe(viewLifecycleOwner, Observer {
+        homeFragmentViewModel.yearErrorHandler.observe(viewLifecycleOwner, Observer {
             if (it != null){
+                fragmentHomeBinding.yearLayout.yearLoadingLayout.visibility = View.GONE
                 fragmentHomeBinding.yearLayout.yearRecyclerview.visibility = View.GONE
                 fragmentHomeBinding.yearLayout.yearErrorHandler.visibility = View.VISIBLE
-                fragmentHomeBinding.yearLayout.yearErrorText.text = "Error: $it"
             }
         })
 
-        homeFragmentViewModel.getRaceListObserver().observe(viewLifecycleOwner, Observer {
+        homeFragmentViewModel.raceListLiveData.observe(viewLifecycleOwner, Observer {
             if (it != null){
+                fragmentHomeBinding.raceLoadingCard.visibility = View.GONE
                 raceListAdapter.updateRaceList(it.toMutableList())
                 fragmentHomeBinding.raceRecyclerview.visibility = View.VISIBLE
-                fragmentHomeBinding.raceErrorLayout.visibility = View.GONE
+                fragmentHomeBinding.raceErrorCard.visibility = View.GONE
             }
         })
 
-        homeFragmentViewModel.getRaceListErrorHander().observe(viewLifecycleOwner, Observer {
+        homeFragmentViewModel.raceErrorHandler.observe(viewLifecycleOwner, Observer {
             if (it != null){
+                fragmentHomeBinding.raceLoadingCard.visibility = View.GONE
                 fragmentHomeBinding.raceRecyclerview.visibility = View.GONE
-                fragmentHomeBinding.raceErrorLayout.visibility = View.VISIBLE
-                fragmentHomeBinding.raceErrorText.text = it
+                fragmentHomeBinding.raceErrorCard.visibility = View.VISIBLE
             }
         })
 

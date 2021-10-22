@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="result"
+            type="io.sahil.f1dashboard.data.models.Result" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,7 +17,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="POS"
+        android:text="@{result.positionText}"
         app:layout_constraintEnd_toStartOf="@id/driver"
         android:id="@+id/pos"
         android:paddingVertical="@dimen/_4sdp"
@@ -29,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/pos"
         app:layout_constraintEnd_toStartOf="@id/time"
-        android:text="DRIVER"
+        android:text="@{result.driverName}"
         app:layout_constraintBottom_toBottomOf="parent"
         android:paddingVertical="@dimen/_4sdp"
         android:paddingHorizontal="@dimen/_8sdp"
@@ -45,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/driver"
         app:layout_constraintEnd_toStartOf="@id/pts"
-        android:text="TIME/RET"
+        android:text="@{result.absoluteTime}"
         android:paddingVertical="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:paddingHorizontal="@dimen/_8sdp"
@@ -66,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/time"
-        android:text="PTS"
+        android:text="@{result.points}"
         android:gravity="center"
         android:id="@+id/pts"
         app:layout_constraintEnd_toEndOf="parent"

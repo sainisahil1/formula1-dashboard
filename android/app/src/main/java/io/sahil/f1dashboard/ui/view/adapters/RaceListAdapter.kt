@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import io.sahil.f1dashboard.R
@@ -17,7 +19,7 @@ import io.sahil.f1dashboard.ui.view.fragments.ResultFragment
 
 class RaceListAdapter(
     private val activity: FragmentActivity?,
-    private var raceList: MutableList<Race>
+    private var raceList: MutableList<Race>,
     ): RecyclerView.Adapter<RaceListAdapter.ViewHolder>(){
 
     fun updateRaceList(updatedList: MutableList<Race>){
@@ -45,7 +47,7 @@ class RaceListAdapter(
             raceListItemBinding.race = race
             raceListItemBinding.raceCard.setOnClickListener {
                 activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.main_frame, ResultFragment(), ResultFragment::class.java.simpleName)
+                    ?.add(R.id.main_frame, ResultFragment(circuitId = race.circuitId, raceID = race.raceId), ResultFragment::class.java.simpleName)
                     ?.addToBackStack(null)
                     ?.commit()
             }

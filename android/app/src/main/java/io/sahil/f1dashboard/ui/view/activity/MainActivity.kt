@@ -11,8 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_frame, HomeFragment(), HomeFragment::class.java.simpleName)
-            .addToBackStack(null)
+            .replace(R.id.main_frame, HomeFragment(), HomeFragment::class.java.simpleName)
             .commit()
 
     }

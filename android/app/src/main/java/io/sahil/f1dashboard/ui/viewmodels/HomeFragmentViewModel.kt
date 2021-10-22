@@ -1,6 +1,8 @@
 package io.sahil.f1dashboard.ui.viewmodels
 
+import android.content.Context
 import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,18 +10,19 @@ import io.sahil.f1dashboard.data.models.Race
 import io.sahil.f1dashboard.data.models.RaceResponse
 import io.sahil.f1dashboard.data.network.RetrofitInstance
 import io.sahil.f1dashboard.data.network.Repository
+import io.sahil.f1dashboard.databinding.FragmentHomeBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragmentViewModel: ViewModel() {
+class HomeFragmentViewModel : ViewModel() {
 
-    private var yearListLiveData: MutableLiveData<List<String>> = MutableLiveData()
-    private var yearErrorHandler: MutableLiveData<String> = MutableLiveData()
-    private var raceListLiveData: MutableLiveData<List<Race>> = MutableLiveData()
-    private var raceErrorHandler: MutableLiveData<String> = MutableLiveData()
+    var yearListLiveData: MutableLiveData<List<String>> = MutableLiveData()
+    var yearErrorHandler: MutableLiveData<String> = MutableLiveData()
+    var raceListLiveData: MutableLiveData<List<Race>> = MutableLiveData()
+    var raceErrorHandler: MutableLiveData<String> = MutableLiveData()
 
 
     private val retrofitInstance = RetrofitInstance.getRetrofitInstance().create(Repository::class.java)
@@ -27,30 +30,12 @@ class HomeFragmentViewModel: ViewModel() {
     private val tag = HomeFragmentViewModel::class.java.simpleName
 
 
-    fun getYearListObserver(): MutableLiveData<List<String>> {
-        return yearListLiveData
-    }
-
-    fun getRaceListObserver(): MutableLiveData<List<Race>> {
-        return raceListLiveData
-    }
-
-    fun getYearListErrorHandler(): MutableLiveData<String> {
-        return yearErrorHandler
-    }
-
-    fun getRaceListErrorHander(): MutableLiveData<String>{
-        return raceErrorHandler
-    }
-
-
-
 
     fun fetchYears() {
         viewModelScope.launch(Dispatchers.IO){
 
             val call = retrofitInstance.getSeasons()
-            Log.e(tag, "Fetch Years URL: ${call.request().url().url().path}")
+            Log.e(tag, "Fetch Years URL: ${call.request().url()}")
 
             call.enqueue(object : Callback<List<String>>{
 
@@ -69,7 +54,12 @@ class HomeFragmentViewModel: ViewModel() {
 
                 override fun onFailure(call: Call<List<String>>, t: Throwable) {
                     t.printStackTrace()
-                    yearErrorHandler.postValue(t.localizedMessage)
+                    if (t.localizedMessage.contains("Unable to resolve host")){
+                        yearErrorHandler.postValue("Please check your internet connection")
+                    }else {
+                        yearErrorHandler.postValue(t.localizedMessage)
+                    }
+
                 }
             })
         }
@@ -81,7 +71,7 @@ class HomeFragmentViewModel: ViewModel() {
         viewModelScope.launch(Dispatchers.IO){
 
             val call = retrofitInstance.getRaces(year)
-            Log.e(tag, "Fetch Races URL: ${call.request().url().url().path}")
+            Log.e(tag, "Fetch Races URL: ${call.request().url()}")
 
             call.enqueue(object: Callback<RaceResponse>{
                 override fun onResponse(call: Call<RaceResponse>, response: Response<RaceResponse>) {
@@ -97,7 +87,11 @@ class HomeFragmentViewModel: ViewModel() {
 
                 override fun onFailure(call: Call<RaceResponse>, t: Throwable) {
                     t.printStackTrace()
-                    raceErrorHandler.postValue(t.localizedMessage)
+                    if (t.localizedMessage.contains("Unable to resolve host")){
+                        raceErrorHandler.postValue("Please check your internet connection")
+                    }else {
+                        raceErrorHandler.postValue(t.localizedMessage)
+                    }
                 }
             })
 

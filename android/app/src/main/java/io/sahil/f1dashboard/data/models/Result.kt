@@ -5,52 +5,52 @@ import com.google.gson.annotations.SerializedName
 data class Result (
 
     @SerializedName("resultId")
-    private val resultId: String? = "",
+    val resultId: String? = "",
 
     @SerializedName("raceId")
-    private val raceId: String? = "",
+    val raceId: String? = "",
 
     @SerializedName("driverId")
-    private val driverId: String? = "",
+    val driverId: String? = "",
 
     @SerializedName("driverName")
-    private val driverName: String? = "",
+    val driverName: String? = "",
 
     @SerializedName("constructorId")
-    private val constructorId: String? = "",
+    val constructorId: String? = "",
 
     @SerializedName("constructorName")
-    private val constructorName: String? = "",
+    val constructorName: String? = "",
 
     @SerializedName("grid")
-    private val grid: Int? = 0,
+    val grid: Int? = 0,
 
     @SerializedName("positionText")
-    private val positionText: String? = "",
+    val positionText: String? = "",
 
     @SerializedName("positionOrder")
-    private val positionOrder: Int? = 0,
+    val positionOrder: Int? = 0,
 
     @SerializedName("points")
-    private val points: String? = "",
+    val points: String? = "",
 
     @SerializedName("laps")
-    private val laps: Int?= 0,
+    val laps: Int?= 0,
 
     @SerializedName("fastestLap")
-    private val fastestLap: String? = "",
+    val fastestLap: String? = "",
 
     @SerializedName("fastestLapTime")
-    private val fastestLapTime: String? = "",
+    val fastestLapTime: String? = "",
 
     @SerializedName("fastestLapSpeed")
-    private val fastestLapSpeed: String? = "",
-
-    @SerializedName("absoluteTime")
-    private val status: String? = "",
+    val fastestLapSpeed: String? = "",
 
     @SerializedName("statusId")
-    private val absoluteTime: String? = ""
+    val status: String? = "",
+
+    @SerializedName("absoluteTime")
+    val absoluteTime: String? = ""
 ){
     override fun toString(): String {
         return "resultId: $resultId, raceId: $raceId, driverId: $driverId, driverName: $driverName, constructorId: $constructorId" +
