@@ -20,7 +20,7 @@ A debug apk is present in [debug folder](./android/app/build/outputs/apk/debug)
 -Java Persistence API\
 -JPQL\
 -HSQL DB\
--AWS Beanstalk\
+-AWS Beanstalk
 
 ### Android
 
@@ -28,7 +28,7 @@ A debug apk is present in [debug folder](./android/app/build/outputs/apk/debug)
 -Data Binding\
 -Coroutines\
 -Retrofit\
--LiveData\
+-LiveData
 
 ## Dataset used
 https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020
